@@ -1,0 +1,20 @@
+federation:
+  title: 'Federation'
+  description: 'Configure federation Module.'
+  parent: system.admin
+  route_name: federation
+  weight: 10
+
+federation.entity:
+  title: 'Federation Entities'
+  description: 'Federations Entities Configuration'
+  parent: federation
+  route_name: federation.entity
+  weight: 10
+
+federation.messages:
+  title: 'Settings & Messages'
+  description: 'Configure Federation Module.'
+  parent: federation
+  route_name: federation.messages
+  weight: 10

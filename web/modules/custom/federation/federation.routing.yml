@@ -1,0 +1,23 @@
+federation:
+  path: '/admin/federation'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'federation Block'
+  requirements:
+    _permission: 'access administration pages'
+
+federation.entity:
+  path: '/admin/federation/entity'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'federation Entity Configuration'
+  requirements:
+    _permission: 'access administration pages'
+
+federation.messages:
+  path: '/admin/federation/messages'
+  defaults:
+    _title: 'Settings & Messages'
+    _form: 'Drupal\federation\Form\SettingsForm'
+  requirements:
+    _permission: 'administer federation configuration'

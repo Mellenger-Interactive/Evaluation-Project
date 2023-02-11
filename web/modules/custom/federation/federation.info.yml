@@ -1,0 +1,5 @@
+name: Federation Module
+type: module
+description: Custom interactions and data management for the Federation
+package: Federation
+core_version_requirement: ^9 || ^10

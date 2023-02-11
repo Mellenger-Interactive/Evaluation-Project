@@ -1,0 +1,3 @@
+default_user: '1'
+user_mapping: 1
+enforce_user_mapping: 0

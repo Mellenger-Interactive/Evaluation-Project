@@ -1,0 +1,4 @@
+administer federation configuration:
+  title: 'Administer federation configuration'
+  description: 'Optional description.'
+  restrict access: true
