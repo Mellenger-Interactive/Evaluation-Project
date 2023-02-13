@@ -1,0 +1,84 @@
+<?php
+/**
+* @file
+* Registration type module file
+*
+* This module allows admins for registration tasks.
+*/
+
+/**
+ * Implement hook_help().
+ */
+function registration_type_help($path, $arg) {
+  if ($path == 'admin/help#registration_type') {
+  return t('Federation allows admins to manage registration types');
+  }
+}
+
+/**
+* Implement hook_menu().
+*/
+function registration_type_menu() {
+    $items['admin/federation/registration-type'] = array(
+    'title' => 'Registration Types',
+    'description' => 'Manage Registration Types.',
+    'page callback' => 'federation_registration_type_list_page',
+    'access arguments' => array('manage registration types'),
+    'file' => 'registration_type.admin.inc',
+  );
+  $items['admin/federation/registration_type/list'] = array(
+    'title' => 'List',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => -10,
+  );
+  $items['admin/federation/registration-type/add'] = array(
+    'title' => 'Add Registration Type',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('registration_type_form'),
+    'access arguments' => array('manage registration types'),
+    'type' => MENU_LOCAL_ACTION,
+    'file' => 'registration_type.admin.inc',
+  );
+  $items['admin/federation/registration-type/%/edit'] = array(
+    'title' => 'Edit Registration Type',
+    'description' => 'Edit a registration type.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('registration_type_form',3),
+    'access arguments' => array('manage registration types'),
+    'file' => 'registration_type.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+* Implements hook_permission().
+*/
+function registration_type_permission() {
+  return array(
+    'manage registration types' => array(
+      'title' => t('Manage Registration Types'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function registration_type_theme() {
+  return array(
+    'registration_type_field_overview' => array(
+      'variables' => array('label' => NULL, 'description' => NULL),
+      'file' => 'registration_type.admin.inc',
+    ),
+    'registration_type_field_display_order' => array(
+      'render element' => 'element',
+      'file' => 'registration_type.admin.inc',
+    ),
+  );
+}
+
+function registration_type_load($rtid) {
+  return db_query("SELECT * FROM {vul_registration_type} WHERE id = :rtid", array(':rtid' => $rtid))->fetchObject();
+}

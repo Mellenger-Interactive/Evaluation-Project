@@ -1,0 +1,3 @@
+administer registration type:
+  title: 'Administer registration type settings'
+  restrict access: true

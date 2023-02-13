@@ -1,0 +1,95 @@
+<?php
+
+/**
+* Add required_registrant_type to the {registration_type} table.
+*/
+
+function registration_type_update_7001(&$sandbox) {
+  $spec = array(
+    'type' => 'int',
+    'unsigned' => TRUE,
+    'not null' => TRUE,
+    'default' => 0
+  );
+  db_add_field('vul_registration_type', 'required_registrant_type', $spec);
+}
+
+
+
+/**
+* Add index to for_team column.
+*/
+
+function registration_type_update_7002(&$sandbox) {
+  if (db_table_exists('vul_registration_type')) {
+    if (!db_index_exists('vul_registration_type', 'idx_for_team')) {
+      db_add_index('vul_registration_type', 'idx_for_team', array('for_team'));
+    }
+  }
+}
+
+function registration_type_update_7003(&$sandbox) {
+  if (db_table_exists('vul_registration_type')) {
+     if(!db_field_exists('vul_registration_type','gender_mix')) {
+        $spec = array(
+        'type' => 'varchar',
+        'length' => 20,
+        'not null' => FALSE,
+        'description' => 'The required gender make-up for this registration type,gender codes.'
+      );
+      db_add_field('vul_registration_type', 'gender_mix', $spec);
+
+      db_update('vul_registration_type')
+        ->fields(array('gender_mix' => 'F'))
+        ->condition(db_or()
+            ->condition('id',5)
+            ->condition('id',6)
+        )
+        ->execute();
+      }
+
+   }
+}
+
+/**
+* Add Registration Type display name for parents.
+*/
+
+function registration_type_update_7004(&$sandbox) {
+  if (db_table_exists('vul_registration_type')) {
+    if(!db_field_exists('vul_registration_type','display_name_parents')) {
+      $spec = array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'description' => 'The display name displayed to parents registering children.'
+      );
+      db_add_field('vul_registration_type', 'display_name_parents', $spec);
+      db_query('UPDATE {vul_registration_type} set display_name_parents = display_name')->execute();
+    }
+  }
+}
+
+/**
+* Add is_active flag for registration types.
+*/
+
+function registration_type_update_7005(&$sandbox) {
+  if (db_table_exists('vul_registration_type')) {
+    if(!db_field_exists('vul_registration_type','is_active')) {
+      $spec = array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 1,
+        'description' => 'Is this registration type active'
+      );
+      db_add_field('vul_registration_type', 'is_active', $spec);
+      db_add_index('vul_registration_type', 'idx_is_active', array('is_active'));
+      db_query('UPDATE {vul_registration_type} set is_active = 1')->execute();
+    }
+  }
+}
+
+
+?>

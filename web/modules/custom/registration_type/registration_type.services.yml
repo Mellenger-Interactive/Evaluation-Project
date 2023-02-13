@@ -1,0 +1,4 @@
+services:
+  registration_type.utilities:
+    class: Drupal\registration_type\Helpers\Utilities
+    arguments: ['@entity_type.manager']

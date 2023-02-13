@@ -1,0 +1,10 @@
+entity.registration_type.edit_form:
+  route_name: entity.registration_type.edit_form
+  group: registration_type
+  title: Edit
+
+entity.registration_type.delete_form:
+  route_name: entity.registration_type.delete_form
+  group: registration_type
+  title: Delete
+  weight: 10

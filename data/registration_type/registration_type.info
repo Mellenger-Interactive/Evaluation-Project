@@ -1,0 +1,5 @@
+name = Registration Types for Federation
+description = Registration Type Manager for the Federation
+core = 7.x
+version = 0.1
+files[] = registration_type.admin.inc

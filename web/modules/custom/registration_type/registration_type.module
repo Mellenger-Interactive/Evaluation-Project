@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * Provides a registration type entity type.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\registration_type\Entity\RegistrationType;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function registration_type_theme() {
+  return [
+    'registration_type' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for registration type templates.
+ *
+ * Default template: registration-type.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the registration type information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_registration_type(array &$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function registration_type_user_cancel($edit, UserInterface $account, $method) {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      // Unpublish registration types.
+      $storage = \Drupal::entityTypeManager()->getStorage('registration_type');
+      $registration_type_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->condition('status', 1)
+        ->execute();
+      foreach ($storage->loadMultiple($registration_type_ids) as $registration_type) {
+        $registration_type->set('status', FALSE);
+        $registration_type->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      // Anonymize registration types.
+      $storage = \Drupal::entityTypeManager()->getStorage('registration_type');
+      $registration_type_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->execute();
+      foreach ($storage->loadMultiple($registration_type_ids) as $registration_type) {
+        $registration_type->setOwnerId(0);
+        $registration_type->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function registration_type_user_predelete(UserInterface $account) {
+  // Delete registration types.
+  $storage = \Drupal::entityTypeManager()->getStorage('registration_type');
+  $registration_type_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->execute();
+  $registration_types = $storage->loadMultiple($registration_type_ids);
+  $storage->delete($registration_types);
+}
