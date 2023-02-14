@@ -1,7 +1,7 @@
 name: Registration type
 type: module
-description: Registration Type Manager for the Federation
-package: Mellenger
+description: Test Registration Type Manager
+package: H
 core: 8.x
 core_version_requirement: ^9 || ^10
 dependencies:

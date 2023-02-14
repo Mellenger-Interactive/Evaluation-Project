@@ -119,7 +119,6 @@ class RegistrationType extends ContentEntityBase implements RegistrationTypeInte
       ->setDefaultValue(0)
       ->setSetting('on_label', 'Enabled')
       ->setDisplayOptions('form', [
-        'type' => 'boolean_radios',
         'settings' => [
           'display_label' => TRUE,
         ],
