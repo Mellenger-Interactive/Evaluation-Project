@@ -1,0 +1,7 @@
+name: Registration Type
+type: module
+description: Registration Type Manager for the Federation
+package: Mellenger
+core_version_requirement: ^9 || ^10
+dependencies:
+  - federation

@@ -1,0 +1,9 @@
+entity.registration_type.settings:
+  title: 'Settings'
+  route_name: entity.registration_type.settings
+  base_route: entity.registration_type.settings
+entity.registration_type.collection:
+  title: 'Registration types'
+  route_name: entity.registration_type.collection
+  base_route: system.admin_content
+  weight: 10

@@ -1,0 +1,17 @@
+registration_type.settings_form:
+  title: 'Registration Type'
+  description: 'Configure Registration Type.'
+  parent: system.admin_config_system
+  route_name: registration_type.settings_form
+  weight: 10
+
+entity.registration_type.settings:
+  title: 'Registration type'
+  description: 'Configure a Registration type entity type.'
+  route_name:  entity.registration_type.settings
+  parent: system.admin_structure
+entity.registration_type.collection:
+  title: 'Registration types'
+  description: 'List of registration types.'
+  route_name: entity.registration_type.collection
+  parent: system.admin_content
