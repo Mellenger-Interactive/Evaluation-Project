@@ -15,6 +15,7 @@ use Drupal\user\EntityOwnerTrait;
  * Defines the registration type entity class.
  *
  * @ContentEntityType(
+ *
  *   id = "registration_type",
  *   label = @Translation("Registration type"),
  *   label_collection = @Translation("Registration types"),
@@ -42,16 +43,11 @@ use Drupal\user\EntityOwnerTrait;
  *     "id" = "id",
  *     "uuid" = "uuid",
  *     "owner" = "uid",
- *     "is_active" = "is_active",
- *     "for_team" = "for_team",
- *     "is_returning" = "is_returning",
- *     "player_count" = "player_count",
- *     "status" = "status",
- *     "created" = "creted",
+ *     "label" = "name",
  *     "changed" = "changed"
  *   },
  *   links = {
- *     "collection" = "/admin/content/registration-type",
+ *     "collection" = "/registration-types",
  *     "add-form" = "/registration-type/add",
  *     "canonical" = "/registration-type/{registration_type}",
  *     "edit-form" = "/registration-type/{registration_type}/edit",
@@ -73,7 +69,6 @@ class RegistrationType extends ContentEntityBase implements RegistrationTypeInte
     if (!$this->getOwnerId()) {
       // If no owner has been set explicitly, make the anonymous user the owner.
       $this->setOwnerId(0);
-
     }
 
   }
@@ -281,7 +276,7 @@ class RegistrationType extends ContentEntityBase implements RegistrationTypeInte
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
-      ->setDescription(t('A boolean indicating whether the Demo entity is published.'))
+      ->setDescription(t('A boolean indicating whether the entity is published.'))
       ->setDefaultValue(TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
