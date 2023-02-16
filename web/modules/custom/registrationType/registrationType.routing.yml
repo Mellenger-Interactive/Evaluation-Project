@@ -1,0 +1,7 @@
+entity.registrationType.settings:
+  path: 'admin/structure/registration-type'
+  defaults:
+    _form: '\Drupal\registrationType\Form\registrationTypeSettingsForm'
+    _title: 'Registration type'
+  requirements:
+    _permission: 'administer registration type'

@@ -1,0 +1,10 @@
+entity.registrationType.settings:
+  title: 'Registration type'
+  description: 'Configure a Registration type entity type.'
+  route_name:  entity.registrationType.settings
+  parent: system.admin_structure
+entity.registrationType.collection:
+  title: 'Registration types'
+  description: 'List of registration types.'
+  route_name: entity.registrationType.collection
+  parent: system.admin_content
