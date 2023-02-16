@@ -1,0 +1,6 @@
+name: Registration type
+type: module
+description:  Registration Type Module
+package: Registration
+core: 8.x
+core_version_requirement: ^9 || ^10

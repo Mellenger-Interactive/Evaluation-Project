@@ -1,0 +1,4 @@
+administer registration type:
+  title: 'Administer registration type settings'
+  description: 'Optional description.'
+  restrict access: true
