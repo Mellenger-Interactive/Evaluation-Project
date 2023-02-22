@@ -11,4 +11,4 @@ The repository has Drupal 10 installation code with composer.In order to get a w
 Custom modules should be placed inside modules/custom Folder.
 
 ## CONFIGURATION
-In Drupal, configuration is the collection of admin settings that determine how the site functions, as opposed to the content of the site.The Task configurations needs to be placed in config folder.
+In Drupal, configuration is the collection of admin settings that determine how the site functions, as opposed to the content of the site.The Task configurations needs to be placed in config folder..
