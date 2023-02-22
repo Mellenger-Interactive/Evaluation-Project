@@ -1,0 +1,5 @@
+entity.registrationType.add_form:
+  route_name: 'entity.RegistrationType.add_form'
+  title: 'Add Registration Type'
+  appears_on:
+    - admin.RegistrationType

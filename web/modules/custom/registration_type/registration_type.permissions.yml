@@ -1,0 +1,4 @@
+administer registration type:
+  title: 'Administer registration types'
+  description: 'Manage Registration Types.'
+  restrict access: true
