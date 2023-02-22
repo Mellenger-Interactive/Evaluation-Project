@@ -1,0 +1,4 @@
+admin.RegistrationType:
+  title: Registration Type
+  route_name: admin.RegistrationType
+  base_route: system.admin_content

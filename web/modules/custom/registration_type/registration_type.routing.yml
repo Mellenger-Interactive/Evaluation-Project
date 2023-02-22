@@ -1,0 +1,36 @@
+entity.RegistrationType.settings:
+  path: 'admin/structure/registration-type'
+  defaults:
+    _form: '\Drupal\registration_type\Form\RegistrationTypeSettingsForm'
+    _title: 'Registration type Settings'
+  requirements:
+    _permission: 'administer registration type'
+admin.RegistrationType:
+  path: 'admin/content/registration-type'
+  defaults:
+    _entity_list: 'registration_type'
+    _title: 'Registration Types'
+  requirements:
+    _permission: 'administer registration type'
+entity.RegistrationType.add_form:
+  path: 'registration-type/add'
+  defaults:
+    _entity_form: 'registration_type.add'
+    _title: 'Add Registration Type'
+  requirements:
+    _permission: 'administer registration type'
+entity.RegistrationType.edit_form:
+  path: 'registration-type/{registration_type}'
+  defaults:
+    _entity_form: 'registration_type.edit'
+    _title: 'Edit Registration Type'
+  requirements:
+    _permission: 'administer registration type'
+
+entity.RegistrationType.delete_form:
+  path: 'registration-type/{registration_type}/delete'
+  defaults:
+    _entity_form: 'registration_type.delete'
+    _title: 'Delete Registration Type'
+  requirements:
+    _permission: 'administer registration type'
